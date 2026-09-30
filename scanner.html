@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>QR 스캔 - 501호</title>
+  <title>QR 스캔 - 701호</title>
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,7 +101,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>501호 출석 체크</h1>
+    <h1>701호 출석 체크</h1>
     <div class="user-info" id="userInfo">-</div>
     <button class="logout-btn" onclick="logout()">로그아웃</button>
   </div>
@@ -118,7 +118,8 @@
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypopD9O5DAtupt_eTAJabXOtvCx8XFumsAjTVFlCFCpi2OvDakRFmxUazIwwZc-Xje/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn9u5fiYXPsENJBGDpIhe4alMwJM68mhHdmqMhCTrVyFNpfh9hWgIbUKqLvfspR4ls/exec';
+
     
     let html5QrCode = null;
     let lastScanTime = 0;
