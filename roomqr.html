@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>501호 출석 QR</title>
+  <title>701호 출석 QR</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -47,7 +47,7 @@
 </head>
 <body>
   <div id="gate">
-    <h2>🔒 501호 출석 QR</h2>
+    <h2>🔒 701호 출석 QR</h2>
     <p>관리자 비밀번호를 입력하세요</p>
     <input type="password" id="pwInput" placeholder="비밀번호" autocomplete="off">
     <button id="pwBtn" onclick="unlock()">확인</button>
@@ -55,7 +55,7 @@
   </div>
 
   <div class="status ok" id="status">🟢 연결됨</div>
-  <h1>501호 출석 체크</h1>
+  <h1>701호 출석 체크</h1>
   <p class="subtitle">폰으로 QR을 스캔하세요</p>
 
   <div class="qr-box">
@@ -67,7 +67,8 @@
   <div class="countdown" id="countdown">다음 갱신: --</div>
 
   <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypopD9O5DAtupt_eTAJabXOtvCx8XFumsAjTVFlCFCpi2OvDakRFmxUazIwwZc-Xje/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn9u5fiYXPsENJBGDpIhe4alMwJM68mhHdmqMhCTrVyFNpfh9hWgIbUKqLvfspR4ls/exec';
+
     const TOKEN_KEY = 'qrToken501';
 
     let currentCode = '';
