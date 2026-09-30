@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>501호 출석 체크</title>
+  <title>701호 출석 체크</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -92,7 +92,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>501호 출석 체크</h1>
+    <h1>701호 출석 체크</h1>
     <p class="subtitle">이름과 비밀번호를 입력하세요</p>
     
     <div class="form-group">
@@ -110,13 +110,14 @@
     <div class="error" id="errorMsg"></div>
     
     <p class="info">
-      QR을 501호 태블릿 화면의 QR로 스캔하세요.<br>
+      QR을 701호 태블릿 화면의 QR로 스캔하세요.<br>
       로그인 정보는 브라우저 닫으면 사라집니다.
     </p>
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypopD9O5DAtupt_eTAJabXOtvCx8XFumsAjTVFlCFCpi2OvDakRFmxUazIwwZc-Xje/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn9u5fiYXPsENJBGDpIhe4alMwJM68mhHdmqMhCTrVyFNpfh9hWgIbUKqLvfspR4ls/exec';
+
     
     // 페이지 진입: 토큰이 있으면 자동 로그인, 없으면 기존 세션 확인
     window.addEventListener('DOMContentLoaded', async () => {
