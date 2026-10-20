@@ -182,10 +182,12 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn9u5fiYXPsENJ
       lastScanTime = now;
       isProcessing = true;
       
-      showStatus('info', '처리 중...', false);
+     showStatus('info', '처리 중...', false);
       const slowTimer = setTimeout(() => {
-        showStatus('info', '⏳ 출석하는 학생이 많아 처리 중입니다.\n화면을 끄거나 다시 찍지 말고 기다려 주세요 (최대 1분)', false);
+        showStatus('info', '⏳ 출석하는 학생이 많아 처리 중입니다.\n화면을 끄거나 다시 찍지 말고 기다려 주세요 (최대 1분 30초)', false);
       }, 8000);
+      const ctrl = new AbortController();
+      const killTimer = setTimeout(() => ctrl.abort(), 90000);
 
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
@@ -196,23 +198,30 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn9u5fiYXPsENJ
             name: studentName,
             password: studentPw,
             qrCode: decodedText
-          })
+          }),
+          signal: ctrl.signal
         });
-        
-        const result = await response.json();
-        
+
+        const text = await response.text();
+        let result;
+        try { result = JSON.parse(text); } catch (e) { throw new Error('응답 형식 오류'); }
+
         if (result.success) {
           const action = result.action || '기록';
           showStatus('success', '✅ ' + action + ' 완료\n' + result.message, true);
         } else {
-          showStatus('error', '❌ ' + (result.message || '실패'), true);
+          showStatus('error', '❌ 출석이 기록되지 않았어요\n' + (result.message || '실패') +
+                     '\n\n태블릿의 새 QR로 다시 찍어 주세요', true);
         }
       } catch (err) {
-        showStatus('error', '❌ 서버 오류: ' + err.message, true);
+        const msg = (err.name === 'AbortError') ? '응답이 너무 늦어요' : err.message;
+        showStatus('error', '❌ 출석이 기록되지 않았을 수 있어요\n(' + msg + ')\n\n1분 뒤 다시 찍거나 스탭에게 이름을 말해 주세요', true);
       } finally {
         clearTimeout(slowTimer);
+        clearTimeout(killTimer);
         setTimeout(() => { isProcessing = false; }, 3000);
       }
+
     }
     
     // 페이지 떠날 때 카메라 정리
